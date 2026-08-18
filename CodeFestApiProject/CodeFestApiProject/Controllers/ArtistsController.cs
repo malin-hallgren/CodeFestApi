@@ -15,6 +15,15 @@ namespace CodeFestApiProject.Controllers
             new Artist("pink floyd"),
             new Artist("the rolling stones")
         };
+
+        public static List<Stage> _stages { get; } = new List<Stage>
+        {
+            new Stage("main stage", 100),
+            new Stage("second stage", 1200),
+            new Stage("acoustic stage", 1),
+            new Stage("electronic stage", 19992),
+            new Stage("indie stage", 202)
+        };
     }
 
     [Route("api/[controller]")]
@@ -109,5 +118,6 @@ namespace CodeFestApiProject.Controllers
             MockData._artists.Remove(artist);
             return Ok();
         }
+
     }
 }
