@@ -64,5 +64,50 @@ namespace CodeFestApiProject.Controllers
                 return NoContent();
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(string name)
+        {
+            if (!MockData._artists.Exists(a => a.Name == name) )
+            {
+                Artist newArtist = new Artist(name.ToLower());
+                MockData._artists.Add(newArtist);
+                return Created();
+            }
+
+            return Conflict();
+        }
+
+        [HttpPatch]
+        public async Task<ActionResult<Artist>> PatchTahtShit(string name, string newName)
+        {
+            name = name.ToLower();
+            await Task.Delay(1000); // Simulate a delay for demonstration purposes
+            var artist = MockData._artists.FirstOrDefault(a => a.Name == name);
+
+            if (artist == null)
+            {
+                return NotFound();
+            }
+
+            artist.Name = newName;
+            return Ok(artist);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> FuckThatShit(string name)
+        {
+            name = name.ToLower();
+            await Task.Delay(1000); // Simulate a delay for demonstration purposes
+            var artist = MockData._artists.FirstOrDefault(a => a.Name == name);
+
+            if (artist == null)
+            {
+                return NotFound();
+            }
+
+            MockData._artists.Remove(artist);
+            return Ok();
+        }
     }
 }
