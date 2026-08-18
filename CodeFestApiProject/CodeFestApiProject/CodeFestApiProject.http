@@ -1,0 +1,6 @@
+@CodeFestApiProject_HostAddress = http://localhost:5037
+
+GET {{CodeFestApiProject_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
